@@ -1,0 +1,29 @@
+name: Benchmark Push
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+    benchmark:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+          with:
+            submodules: true
+        - uses: actions-rust-lang/setup-rust-toolchain@v1
+        - name: Build and run benchmarks
+          run: cargo bench
+        # Push To benchmarks-result branch
+        - name: Push benchmark results
+          run: |
+            git checkout -b benchmarks-result
+            git add target/criterion
+            git add target/iai
+            git commit -m "Update benchmark results"
+            git push --set-upstream origin benchmarks-result

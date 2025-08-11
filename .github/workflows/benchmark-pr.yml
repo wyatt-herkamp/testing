@@ -1,0 +1,29 @@
+name: Benchmark Push
+
+permissions:
+  contents: read
+  pull-requests: write
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, labeled ]
+jobs:
+    benchmark:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+          with:
+            submodules: true
+        - uses: actions-rust-lang/setup-rust-toolchain@v1
+        - name: Checkout Benchmarks
+          run: |
+            git checkout -b benchmarks-result
+        - name: Checkout Current Branch
+          run: |
+            git checkout -
+        # Run benchmark but write to file
+        - name: Compare Benchmark Results
+          run: bash ${GITHUB_WORKSPACE}/__bin__/bench_template.sh  /target/comment.txt
+        # Upload Results by commenting ON PR
+        - name: Upload Results
+          run: |
+            gh pr comment ${{ github.event.pull_request.number }} --body-file /target/comment.txt
