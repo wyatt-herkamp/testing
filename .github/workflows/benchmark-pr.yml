@@ -31,7 +31,7 @@ jobs:
             cp -r ../benchmarks-result/criterion/* target/criterion/
         # Run benchmark but write to file
         - name: Compare Benchmark Results
-          run: bash ${GITHUB_WORKSPACE}/__bin__/bench_template.sh  /target/comment.txt
+          run: bash ${GITHUB_WORKSPACE}/__bin__/bench_template.sh  ./target/comment.txt
         # Upload Results by commenting ON PR
         - name: Upload Results
           run: |

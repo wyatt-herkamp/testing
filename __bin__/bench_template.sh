@@ -3,6 +3,7 @@
 set -eou pipefail
 
 file=${1}
+touch $file
 
 cat <<-'EOT' >> $file
 Please check the benchmark results for any regressions.
