@@ -6,6 +6,8 @@ permissions:
 on:
   pull_request:
     types: [ opened, synchronize, reopened, labeled ]
+env:
+  GH_TOKEN: ${{ github.token }}
 jobs:
     benchmark:
         runs-on: ubuntu-latest
