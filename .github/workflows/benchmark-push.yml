@@ -28,6 +28,7 @@ jobs:
           run: |
             git add --force target/criterion
             git commit -m "Update Benchmark Results"
+            git fetch
             git checkout -b benchmarks-result origin/benchmarks-result
             git reset --hard main
             git push --force
