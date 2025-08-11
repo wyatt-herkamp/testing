@@ -26,7 +26,7 @@ jobs:
         # Push To benchmarks-result branch
         - name: Push benchmark results
           run: |
-            git checkout -b benchmarks-result
             git add --force target/criterion
-            git commit -m "Update benchmark results"
-            git push --set-upstream origin benchmarks-result
+            git commit -m "Update Benchmark Results"
+            git reset --hard main
+            git push --force
