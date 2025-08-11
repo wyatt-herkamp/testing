@@ -23,7 +23,6 @@ jobs:
         - name: Push benchmark results
           run: |
             git checkout -b benchmarks-result
-            git add target/criterion
-            git add target/iai
+            git add --force target/criterion
             git commit -m "Update benchmark results"
             git push --set-upstream origin benchmarks-result
