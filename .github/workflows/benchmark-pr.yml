@@ -37,4 +37,4 @@ jobs:
         # Upload Results by commenting ON PR
         - name: Upload Results
           run: |
-            gh pr comment ${{ github.event.pull_request.number }} --body-file /target/comment.txt
+            gh pr comment ${{ github.event.pull_request.number }} --body-file ./target/comment.txt
