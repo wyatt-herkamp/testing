@@ -21,7 +21,7 @@ jobs:
         - uses: actions-rust-lang/setup-rust-toolchain@v1
         - name: Checkout And Copy Benchmarks
           run: |
-            git checkout -b benchmarks-result
+            git checkout -b benchmarks-result origin/benchmarks-result
             cp -r target/criterion benchmarks-result/
         - name: Checkout Current Branch
           run: |
