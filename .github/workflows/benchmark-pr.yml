@@ -22,11 +22,13 @@ jobs:
         - name: Checkout And Copy Benchmarks
           run: |
             git checkout -b benchmarks-result origin/benchmarks-result
-            cp -r target/criterion ../benchmarks-result/
+            mkdir -p ../benchmarks-result/criterion
+            cp -r target/criterion/* ../benchmarks-result/criterion/
         - name: Checkout Current Branch
           run: |
             git checkout -
-            cp -r ../benchmarks-result/criterion target/
+            mkdir -p target/criterion
+            cp -r ../benchmarks-result/criterion/* target/criterion/
         # Run benchmark but write to file
         - name: Compare Benchmark Results
           run: bash ${GITHUB_WORKSPACE}/__bin__/bench_template.sh  /target/comment.txt
