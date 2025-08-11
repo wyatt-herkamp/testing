@@ -24,9 +24,6 @@ jobs:
         - name: Build and run benchmarks
           run: cargo bench
         # Push To benchmarks-result branch
-        - name: Delete Old Benchmark Results
-          run: |
-            git push origin --delete benchmarks-result
         - name: Push benchmark results
           run: |
             git checkout -b benchmarks-result
